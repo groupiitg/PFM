@@ -23,6 +23,7 @@ def check_bijection(order, nbits):
 def run_trace(addrs, tag, org="DDR4_8Gb_x8"):
     assert len(set(addrs)) == len(addrs), "duplicate addresses in trace"
     assert all(a % 64 == 0 for a in addrs)
+    os.makedirs("traces", exist_ok=True)
     path = f"traces/{tag}.trace"
     with open(path, "w") as f:
         for a in addrs: f.write(f"0 {a}\n")

@@ -46,9 +46,19 @@ deliverables/
 
 ## Reproduce
 
-Requirements: Python 3.10+, PuLP, matplotlib, g++ 12+ (C++20), CMake, and TeX Live for the report.
+Requirements: Linux (tested on Ubuntu under WSL2), Python 3.10+, g++ 12+ (C++20), CMake 3.14+, git, and TeX Live (`latexmk`, IEEEtran, beamer) for the report and slides.
 
-Build Ramulator 2.0 (commit c6c7a5d) with the PFM mapper:
+All commands below are run from the top folder of this repository, in one terminal.
+
+**1. Python environment** (PuLP is pinned to 2.9.0; PuLP 4.x changed its API and does not work with this code):
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+**2. Build Ramulator 2.0 (commit c6c7a5d) with the PFM mapper** (the first build downloads its dependencies and takes a few minutes):
 
 ```bash
 git clone https://github.com/CMU-SAFARI/ramulator2.git
@@ -59,21 +69,32 @@ cd ..
 export RAMULATOR_PY=$PWD/ramulator2/python
 ```
 
-Then run the experiments:
+**3. Run the experiments** (same terminal, so the virtual environment and `RAMULATOR_PY` are still set; about 10-15 minutes in total):
 
 ```bash
 cd v2
-python3 pfm_opt2.py                # results/mappings_x8.json
-python3 pfm_opt3.py                # results/opt3.json (needs Ramulator importable)
-python3 run_final.py               # results/final.json (runs Ramulator)
-python3 make_report_data.py        # results/shape_table.csv
-python3 run_region_mapper.py       # results/region_mapper.json
-cd ../deliverables
+python3 pfm_opt2.py                # optimizer, first model -> results/mappings_x8.json
+python3 pfm_opt3.py                # optimizer, final model + PIM model -> results/opt3.json
+python3 run_final.py               # all layouts in Ramulator -> results/final.json
+python3 make_report_data.py        # page-weighted table -> results/shape_table.csv
+python3 run_region_mapper.py       # PFMRegionMapper checks -> results/region_mapper.json
+cd ..
+```
+
+**4. Figures, report, slides and submission folder:**
+
+```bash
+cd deliverables
 python3 scripts/make_figures.py
+cp figures/*.pdf figures/layouts_tikz.tex report/figures/ && cp tables/*.tex report/tables/
+cp figures/*.pdf figures/layouts_tikz.tex slides/figures/
 (cd report && latexmk -pdf main.tex)
 (cd slides && latexmk -pdf slides.tex)
-python3 scripts/package_submission.py --repo-url <URL>
+python3 scripts/package_submission.py --repo-url https://github.com/groupiitg/PFM
+cd ..
 ```
+
+The results in `v2/results/` are already in the repository, so step 4 can be run on its own (after step 1) without rebuilding Ramulator. If you open a new terminal later, run `source .venv/bin/activate` and `export RAMULATOR_PY=$PWD/ramulator2/python` again from the top folder.
 
 ## Limitations
 
