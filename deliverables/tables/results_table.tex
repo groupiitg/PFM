@@ -1,0 +1,31 @@
+\begin{table}[t]
+\centering
+\caption{Bandwidth utilization (\%) of every layout. NPU: Ramulator 2.0. PIM: analytical all-bank model; the read-stream proxy is shown for reference.}
+\label{tab:results}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{llrrr}
+\toprule
+Case & Layout & NPU & PIM & PIM proxy \\
+\midrule
+\multirow{4}{*}{x8, $d_{\mathrm{in}}$=4096} & NPU-friendly & 95.23 & 24.03 & 91.25 \\
+ & PIM-friendly & 65.83 & 96.12 & 95.03 \\
+ & PFM $\alpha$=0.25 & 95.17 & 48.06 & 94.87 \\
+ & PFM $\alpha$=2 & 65.83 & 96.12 & 95.03 \\
+\midrule
+\multirow{4}{*}{x8, $d_{\mathrm{in}}$=14336} & NPU-friendly & 95.23 & 3.95 & 51.66 \\
+ & PIM-friendly & 65.83 & 3.95 & 27.85 \\
+ & PFM $\alpha$=0.25 & 90.15 & 48.06 & 94.91 \\
+ & PFM $\alpha$=2 & 61.66 & 96.12 & 94.98 \\
+\midrule
+\multirow{4}{*}{x16, $d_{\mathrm{in}}$=4096} & NPU-friendly & 94.82 & 48.03 & 94.83 \\
+ & PIM-friendly & 65.46 & 96.06 & 94.86 \\
+ & PFM $\alpha$=0.25 & 94.79 & 48.03 & 94.83 \\
+ & PFM $\alpha$=2 & 65.46 & 96.06 & 94.86 \\
+\midrule
+\multirow{4}{*}{x16, $d_{\mathrm{in}}$=14336} & NPU-friendly & 94.82 & 3.95 & 53.03 \\
+ & PIM-friendly & 65.46 & 3.95 & 36.66 \\
+ & PFM $\alpha$=0.25 & 90.90 & 48.03 & 94.83 \\
+ & PFM $\alpha$=2 & 61.56 & 96.06 & 94.85 \\
+\bottomrule
+\end{tabular}
+\end{table}

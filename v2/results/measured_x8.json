@@ -1,0 +1,294 @@
+{
+  "7": {
+    "NPU-friendly": {
+      "order": [
+        [
+          "bg",
+          2
+        ],
+        [
+          "col",
+          7
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          4
+        ]
+      ],
+      "npu": {
+        "tag": "x8_pn7_NPU_friendly_npu",
+        "reads": 32768,
+        "cycles": 137643,
+        "util": 95.22605581104742,
+        "mbps": 18290.71875,
+        "row_hits": 32458,
+        "row_misses": 232,
+        "row_conflicts": 78,
+        "lat": 50.191956
+      },
+      "pim": {
+        "tag": "x8_pn7_NPU_friendly_pim",
+        "reads": 32768,
+        "cycles": 143644,
+        "util": 91.247807078611,
+        "mbps": 17526.589844,
+        "row_hits": 32272,
+        "row_misses": 256,
+        "row_conflicts": 240,
+        "lat": 53.116516
+      },
+      "model_npu": 1.0,
+      "model_pim": 0.6666666666666666
+    },
+    "PIM-friendly": {
+      "order": [
+        [
+          "col",
+          7
+        ],
+        [
+          "bg",
+          2
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          4
+        ]
+      ],
+      "npu": {
+        "tag": "x8_pn7_PIM_friendly_npu",
+        "reads": 32768,
+        "cycles": 199097,
+        "util": 65.83323706535006,
+        "mbps": 12645.039062,
+        "row_hits": 32488,
+        "row_misses": 280,
+        "row_conflicts": 0,
+        "lat": 80.191467
+      },
+      "pim": {
+        "tag": "x8_pn7_PIM_friendly_pim",
+        "reads": 32768,
+        "cycles": 137925,
+        "util": 95.03135762189596,
+        "mbps": 18253.322266,
+        "row_hits": 32288,
+        "row_misses": 240,
+        "row_conflicts": 240,
+        "lat": 50.329651
+      },
+      "model_npu": 0.6666666666666666,
+      "model_pim": 1.0
+    },
+    "PFM-joint": {
+      "order": [
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "col",
+          1
+        ],
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "row",
+          4
+        ]
+      ],
+      "npu": {
+        "tag": "x8_pn7_PFM_joint_npu",
+        "reads": 32768,
+        "cycles": 138209,
+        "util": 94.83608158658264,
+        "mbps": 18215.814453,
+        "row_hits": 32304,
+        "row_misses": 240,
+        "row_conflicts": 224,
+        "lat": 50.468323
+      },
+      "pim": {
+        "tag": "x8_pn7_PFM_joint_pim",
+        "reads": 32768,
+        "cycles": 137999,
+        "util": 94.98039840868412,
+        "mbps": 18243.533203,
+        "row_hits": 32378,
+        "row_misses": 240,
+        "row_conflicts": 150,
+        "lat": 50.365784
+      },
+      "model_npu": 1.0,
+      "model_pim": 1.0
+    }
+  },
+  "9": {
+    "NPU-friendly": {
+      "order": [
+        [
+          "bg",
+          2
+        ],
+        [
+          "col",
+          7
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          4
+        ]
+      ],
+      "npu": {
+        "tag": "x8_pn9_NPU_friendly_npu",
+        "reads": 32768,
+        "cycles": 137643,
+        "util": 95.22605581104742,
+        "mbps": 18290.71875,
+        "row_hits": 32458,
+        "row_misses": 232,
+        "row_conflicts": 78,
+        "lat": 50.191956
+      },
+      "pim": {
+        "tag": "x8_pn9_NPU_friendly_pim",
+        "reads": 32768,
+        "cycles": 253702,
+        "util": 51.66376299753254,
+        "mbps": 9923.412109,
+        "row_hits": 0,
+        "row_misses": 389,
+        "row_conflicts": 32379,
+        "lat": 106.832214
+      },
+      "model_npu": 1.0,
+      "model_pim": 0.5416666666666666
+    },
+    "PIM-friendly": {
+      "order": [
+        [
+          "col",
+          7
+        ],
+        [
+          "bg",
+          2
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          4
+        ]
+      ],
+      "npu": {
+        "tag": "x8_pn9_PIM_friendly_npu",
+        "reads": 32768,
+        "cycles": 199097,
+        "util": 65.83323706535006,
+        "mbps": 12645.039062,
+        "row_hits": 32488,
+        "row_misses": 280,
+        "row_conflicts": 0,
+        "lat": 80.191467
+      },
+      "pim": {
+        "tag": "x8_pn9_PIM_friendly_pim",
+        "reads": 32768,
+        "cycles": 470614,
+        "util": 27.85127514268594,
+        "mbps": 5349.584473,
+        "row_hits": 0,
+        "row_misses": 195,
+        "row_conflicts": 32573,
+        "lat": 212.737854
+      },
+      "model_npu": 0.6666666666666666,
+      "model_pim": 0.5416666666666666
+    },
+    "PFM-joint": {
+      "order": [
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          1
+        ],
+        [
+          "row",
+          4
+        ]
+      ],
+      "npu": {
+        "tag": "x8_pn9_PFM_joint_npu",
+        "reads": 32768,
+        "cycles": 138063,
+        "util": 94.93636962835807,
+        "mbps": 18235.076172,
+        "row_hits": 32352,
+        "row_misses": 240,
+        "row_conflicts": 176,
+        "lat": 50.397034
+      },
+      "pim": {
+        "tag": "x8_pn9_PFM_joint_pim",
+        "reads": 32768,
+        "cycles": 259328,
+        "util": 50.54294175715696,
+        "mbps": 9708.12793,
+        "row_hits": 16248,
+        "row_misses": 492,
+        "row_conflicts": 16028,
+        "lat": 109.586121
+      },
+      "model_npu": 1.0,
+      "model_pim": 0.875
+    }
+  }
+}

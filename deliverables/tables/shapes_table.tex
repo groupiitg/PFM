@@ -1,0 +1,18 @@
+\begin{table*}[t]
+\centering
+\caption{Per-matrix utilization on DDR4 x8, shown as NPU\,\% / PIM\,\%. Shapes are $d_{\mathrm{in}}\times d_{\mathrm{out}}$ of $y = xW$ in FP16.}
+\label{tab:shapes}
+\begin{tabular}{llrcccc}
+\toprule
+Matrix & Shape & Pages & NPU-friendly & PIM-friendly & PFM $\alpha$=0.25 & PFM $\alpha$=2 \\
+\midrule
+\texttt{q\_proj} & 4096$\times$4096 & 16 & 95.2/24.0 & 65.8/96.1 & 95.2/48.1 & 65.8/96.1 \\
+\texttt{k\_proj} & 4096$\times$1024 & 4 & 95.2/24.0 & 65.8/96.1 & 95.2/48.1 & 65.8/96.1 \\
+\texttt{v\_proj} & 4096$\times$1024 & 4 & 95.2/24.0 & 65.8/96.1 & 95.2/48.1 & 65.8/96.1 \\
+\texttt{o\_proj} & 4096$\times$4096 & 16 & 95.2/24.0 & 65.8/96.1 & 95.2/48.1 & 65.8/96.1 \\
+\texttt{gate\_proj} & 4096$\times$14336 & 56 & 95.2/24.0 & 65.8/96.1 & 95.2/48.1 & 65.8/96.1 \\
+\texttt{up\_proj} & 4096$\times$14336 & 56 & 95.2/24.0 & 65.8/96.1 & 95.2/48.1 & 65.8/96.1 \\
+\texttt{down\_proj} & 14336$\times$4096 & 56 & 95.2/4.0 & 65.8/4.0 & 90.2/48.1 & 61.7/96.1 \\
+\bottomrule
+\end{tabular}
+\end{table*}

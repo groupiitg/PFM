@@ -1,0 +1,65 @@
+org,tensor,shape,pages,layout,npu_util_meas,pim_util_analytical
+x8,q_proj,4096x4096,16,NPU-friendly,95.23,24.03
+x8,k_proj,4096x1024,4,NPU-friendly,95.23,24.03
+x8,v_proj,4096x1024,4,NPU-friendly,95.23,24.03
+x8,o_proj,4096x4096,16,NPU-friendly,95.23,24.03
+x8,gate_proj,4096x14336,56,NPU-friendly,95.23,24.03
+x8,up_proj,4096x14336,56,NPU-friendly,95.23,24.03
+x8,down_proj,14336x4096,56,NPU-friendly,95.23,3.95
+x8,ALL(page-weighted),,208,NPU-friendly,95.23,18.62
+x8,q_proj,4096x4096,16,PIM-friendly,65.83,96.12
+x8,k_proj,4096x1024,4,PIM-friendly,65.83,96.12
+x8,v_proj,4096x1024,4,PIM-friendly,65.83,96.12
+x8,o_proj,4096x4096,16,PIM-friendly,65.83,96.12
+x8,gate_proj,4096x14336,56,PIM-friendly,65.83,96.12
+x8,up_proj,4096x14336,56,PIM-friendly,65.83,96.12
+x8,down_proj,14336x4096,56,PIM-friendly,65.83,3.95
+x8,ALL(page-weighted),,208,PIM-friendly,65.83,71.3
+x8,q_proj,4096x4096,16,PFM a=0.25,95.17,48.06
+x8,k_proj,4096x1024,4,PFM a=0.25,95.17,48.06
+x8,v_proj,4096x1024,4,PFM a=0.25,95.17,48.06
+x8,o_proj,4096x4096,16,PFM a=0.25,95.17,48.06
+x8,gate_proj,4096x14336,56,PFM a=0.25,95.17,48.06
+x8,up_proj,4096x14336,56,PFM a=0.25,95.17,48.06
+x8,down_proj,14336x4096,56,PFM a=0.25,90.15,48.06
+x8,ALL(page-weighted),,208,PFM a=0.25,93.82,48.06
+x8,q_proj,4096x4096,16,PFM a=2.0,65.83,96.12
+x8,k_proj,4096x1024,4,PFM a=2.0,65.83,96.12
+x8,v_proj,4096x1024,4,PFM a=2.0,65.83,96.12
+x8,o_proj,4096x4096,16,PFM a=2.0,65.83,96.12
+x8,gate_proj,4096x14336,56,PFM a=2.0,65.83,96.12
+x8,up_proj,4096x14336,56,PFM a=2.0,65.83,96.12
+x8,down_proj,14336x4096,56,PFM a=2.0,61.66,96.12
+x8,ALL(page-weighted),,208,PFM a=2.0,64.71,96.12
+x16,q_proj,4096x4096,16,NPU-friendly,94.82,48.03
+x16,k_proj,4096x1024,4,NPU-friendly,94.82,48.03
+x16,v_proj,4096x1024,4,NPU-friendly,94.82,48.03
+x16,o_proj,4096x4096,16,NPU-friendly,94.82,48.03
+x16,gate_proj,4096x14336,56,NPU-friendly,94.82,48.03
+x16,up_proj,4096x14336,56,NPU-friendly,94.82,48.03
+x16,down_proj,14336x4096,56,NPU-friendly,94.82,3.95
+x16,ALL(page-weighted),,208,NPU-friendly,94.82,36.16
+x16,q_proj,4096x4096,16,PIM-friendly,65.46,96.06
+x16,k_proj,4096x1024,4,PIM-friendly,65.46,96.06
+x16,v_proj,4096x1024,4,PIM-friendly,65.46,96.06
+x16,o_proj,4096x4096,16,PIM-friendly,65.46,96.06
+x16,gate_proj,4096x14336,56,PIM-friendly,65.46,96.06
+x16,up_proj,4096x14336,56,PIM-friendly,65.46,96.06
+x16,down_proj,14336x4096,56,PIM-friendly,65.46,3.95
+x16,ALL(page-weighted),,208,PIM-friendly,65.46,71.26
+x16,q_proj,4096x4096,16,PFM a=0.25,94.79,48.03
+x16,k_proj,4096x1024,4,PFM a=0.25,94.79,48.03
+x16,v_proj,4096x1024,4,PFM a=0.25,94.79,48.03
+x16,o_proj,4096x4096,16,PFM a=0.25,94.79,48.03
+x16,gate_proj,4096x14336,56,PFM a=0.25,94.79,48.03
+x16,up_proj,4096x14336,56,PFM a=0.25,94.79,48.03
+x16,down_proj,14336x4096,56,PFM a=0.25,90.9,48.03
+x16,ALL(page-weighted),,208,PFM a=0.25,93.74,48.03
+x16,q_proj,4096x4096,16,PFM a=2.0,65.46,96.06
+x16,k_proj,4096x1024,4,PFM a=2.0,65.46,96.06
+x16,v_proj,4096x1024,4,PFM a=2.0,65.46,96.06
+x16,o_proj,4096x4096,16,PFM a=2.0,65.46,96.06
+x16,gate_proj,4096x14336,56,PFM a=2.0,65.46,96.06
+x16,up_proj,4096x14336,56,PFM a=2.0,65.46,96.06
+x16,down_proj,14336x4096,56,PFM a=2.0,61.56,96.06
+x16,ALL(page-weighted),,208,PFM a=2.0,64.41,96.06

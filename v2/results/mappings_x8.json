@@ -1,0 +1,89 @@
+{
+  "org": "x8",
+  "cap": {
+    "col": 7,
+    "bg": 2,
+    "bank": 2,
+    "row": 4
+  },
+  "nbits": 15,
+  "mappings": {
+    "7": {
+      "tensors": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj"
+      ],
+      "alpha": 1.0,
+      "order": [
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "col",
+          1
+        ],
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "row",
+          4
+        ]
+      ]
+    },
+    "9": {
+      "tensors": [
+        "down_proj"
+      ],
+      "alpha": 1.0,
+      "order": [
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          1
+        ],
+        [
+          "row",
+          4
+        ]
+      ]
+    }
+  }
+}

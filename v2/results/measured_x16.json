@@ -1,0 +1,358 @@
+{
+  "7": {
+    "NPU-friendly": {
+      "order": [
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          7
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          5
+        ]
+      ],
+      "npu": {
+        "tag": "x16_pn7_NPU-friendly_npu",
+        "reads": 32768,
+        "cycles": 138234,
+        "util": 94.81893021977227,
+        "mbps": 18212.519531,
+        "row_hits": 32484,
+        "row_misses": 120,
+        "row_conflicts": 164,
+        "lat": 50.479614
+      },
+      "pim": {
+        "tag": "x16_pn7_NPU-friendly_pim",
+        "reads": 32768,
+        "cycles": 138220,
+        "util": 94.82853422080741,
+        "mbps": 18214.363281,
+        "row_hits": 32400,
+        "row_misses": 120,
+        "row_conflicts": 248,
+        "lat": 50.469727
+      }
+    },
+    "PIM-friendly": {
+      "order": [
+        [
+          "col",
+          7
+        ],
+        [
+          "bg",
+          1
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          5
+        ]
+      ],
+      "npu": {
+        "tag": "x16_pn7_PIM-friendly_npu",
+        "reads": 32768,
+        "cycles": 200236,
+        "util": 65.45875866477556,
+        "mbps": 12573.110352,
+        "row_hits": 32490,
+        "row_misses": 173,
+        "row_conflicts": 105,
+        "lat": 80.74762
+      },
+      "pim": {
+        "tag": "x16_pn7_PIM-friendly_pim",
+        "reads": 32768,
+        "cycles": 138176,
+        "util": 94.85873089393237,
+        "mbps": 18220.164062,
+        "row_hits": 32376,
+        "row_misses": 144,
+        "row_conflicts": 248,
+        "lat": 50.449646
+      }
+    },
+    "PFM a=0.25": {
+      "order": [
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          6
+        ],
+        [
+          "bank",
+          1
+        ],
+        [
+          "col",
+          1
+        ],
+        [
+          "bank",
+          1
+        ],
+        [
+          "row",
+          5
+        ]
+      ],
+      "npu": {
+        "tag": "x16_pn7_PFM_a=0.25_npu",
+        "reads": 32768,
+        "cycles": 138271,
+        "util": 94.79355757895726,
+        "mbps": 18207.646484,
+        "row_hits": 32472,
+        "row_misses": 120,
+        "row_conflicts": 176,
+        "lat": 50.497681
+      },
+      "pim": {
+        "tag": "x16_pn7_PFM_a=0.25_pim",
+        "reads": 32768,
+        "cycles": 138223,
+        "util": 94.82647605680675,
+        "mbps": 18213.96875,
+        "row_hits": 32400,
+        "row_misses": 120,
+        "row_conflicts": 248,
+        "lat": 50.471191
+      }
+    },
+    "PFM a=2.0": {
+      "order": [
+        [
+          "col",
+          7
+        ],
+        [
+          "bg",
+          1
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          5
+        ]
+      ],
+      "npu": {
+        "tag": "x16_pn7_PFM_a=2.0_npu",
+        "reads": 32768,
+        "cycles": 200236,
+        "util": 65.45875866477556,
+        "mbps": 12573.110352,
+        "row_hits": 32490,
+        "row_misses": 173,
+        "row_conflicts": 105,
+        "lat": 80.74762
+      },
+      "pim": {
+        "tag": "x16_pn7_PFM_a=2.0_pim",
+        "reads": 32768,
+        "cycles": 138176,
+        "util": 94.85873089393237,
+        "mbps": 18220.164062,
+        "row_hits": 32376,
+        "row_misses": 144,
+        "row_conflicts": 248,
+        "lat": 50.449646
+      }
+    }
+  },
+  "9": {
+    "NPU-friendly": {
+      "order": [
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          7
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          5
+        ]
+      ],
+      "npu": {
+        "tag": "x16_pn9_NPU-friendly_npu",
+        "reads": 32768,
+        "cycles": 138234,
+        "util": 94.81893021977227,
+        "mbps": 18212.519531,
+        "row_hits": 32484,
+        "row_misses": 120,
+        "row_conflicts": 164,
+        "lat": 50.479614
+      },
+      "pim": {
+        "tag": "x16_pn9_NPU-friendly_pim",
+        "reads": 32768,
+        "cycles": 247163,
+        "util": 53.03059114835149,
+        "mbps": 10185.947266,
+        "row_hits": 15616,
+        "row_misses": 141,
+        "row_conflicts": 17011,
+        "lat": 103.631165
+      }
+    },
+    "PIM-friendly": {
+      "order": [
+        [
+          "col",
+          7
+        ],
+        [
+          "bg",
+          1
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "row",
+          5
+        ]
+      ],
+      "npu": {
+        "tag": "x16_pn9_PIM-friendly_npu",
+        "reads": 32768,
+        "cycles": 200236,
+        "util": 65.45875866477556,
+        "mbps": 12573.110352,
+        "row_hits": 32490,
+        "row_misses": 173,
+        "row_conflicts": 105,
+        "lat": 80.74762
+      },
+      "pim": {
+        "tag": "x16_pn9_PIM-friendly_pim",
+        "reads": 32768,
+        "cycles": 357524,
+        "util": 36.66103534308186,
+        "mbps": 7041.735352,
+        "row_hits": 20411,
+        "row_misses": 115,
+        "row_conflicts": 12242,
+        "lat": 157.490479
+      }
+    },
+    "PFM a=0.25": {
+      "order": [
+        [
+          "bg",
+          1
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "col",
+          4
+        ],
+        [
+          "row",
+          5
+        ]
+      ],
+      "npu": {
+        "tag": "x16_pn9_PFM_a=0.25_npu",
+        "reads": 32768,
+        "cycles": 138458,
+        "util": 94.66553034133095,
+        "mbps": 18183.054688,
+        "row_hits": 32406,
+        "row_misses": 120,
+        "row_conflicts": 242,
+        "lat": 50.588989
+      },
+      "pim": {
+        "tag": "x16_pn9_PFM_a=0.25_pim",
+        "reads": 32768,
+        "cycles": 283986,
+        "util": 46.154387892360894,
+        "mbps": 8865.188477,
+        "row_hits": 22997,
+        "row_misses": 226,
+        "row_conflicts": 9545,
+        "lat": 121.613159
+      }
+    },
+    "PFM a=2.0": {
+      "order": [
+        [
+          "col",
+          4
+        ],
+        [
+          "bank",
+          2
+        ],
+        [
+          "col",
+          3
+        ],
+        [
+          "bg",
+          1
+        ],
+        [
+          "row",
+          5
+        ]
+      ],
+      "npu": {
+        "tag": "x16_pn9_PFM_a=2.0_npu",
+        "reads": 32768,
+        "cycles": 204938,
+        "util": 63.95690403927041,
+        "mbps": 12284.638672,
+        "row_hits": 32434,
+        "row_misses": 176,
+        "row_conflicts": 158,
+        "lat": 83.043518
+      },
+      "pim": {
+        "tag": "x16_pn9_PFM_a=2.0_pim",
+        "reads": 32768,
+        "cycles": 311253,
+        "util": 42.11108005384687,
+        "mbps": 8088.562988,
+        "row_hits": 20470,
+        "row_misses": 248,
+        "row_conflicts": 12050,
+        "lat": 134.923706
+      }
+    }
+  }
+}

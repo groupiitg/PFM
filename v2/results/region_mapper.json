@@ -1,0 +1,293 @@
+{
+  "equivalence": {
+    "x8_pn7": {
+      "NPU-friendly": {
+        "layout": "bg2 col7 bank2 row4",
+        "npu_util_mapper": 95.22605581104742,
+        "npu_util_remap": 95.22605581104742,
+        "npu_util_saved": 95.22605581104742,
+        "npu_cycles": 137643,
+        "pim_proxy_util_mapper": 91.247807078611,
+        "pim_proxy_util_remap": 91.247807078611,
+        "identical": true
+      },
+      "PIM-friendly": {
+        "layout": "col7 bg2 bank2 row4",
+        "npu_util_mapper": 65.83323706535006,
+        "npu_util_remap": 65.83323706535006,
+        "npu_util_saved": 65.83323706535006,
+        "npu_cycles": 199097,
+        "pim_proxy_util_mapper": 95.03135762189596,
+        "pim_proxy_util_remap": 95.03135762189596,
+        "identical": true
+      },
+      "PFM a=0.25": {
+        "layout": "bg1 col6 bank1 col1 bank1 bg1 row4",
+        "npu_util_mapper": 95.16797723031794,
+        "npu_util_remap": 95.16797723031794,
+        "npu_util_saved": 95.16797723031794,
+        "npu_cycles": 137727,
+        "pim_proxy_util_mapper": 94.87383644338927,
+        "pim_proxy_util_remap": 94.87383644338927,
+        "identical": true
+      },
+      "PFM a=1.0": {
+        "layout": "col7 bg1 bank2 bg1 row4",
+        "npu_util_mapper": 65.83323706535006,
+        "npu_util_remap": 65.83323706535006,
+        "npu_util_saved": 65.83323706535006,
+        "npu_cycles": 199097,
+        "pim_proxy_util_mapper": 95.03135762189596,
+        "pim_proxy_util_remap": 95.03135762189596,
+        "identical": true
+      },
+      "PFM a=2.0": {
+        "layout": "col7 bg1 bank2 bg1 row4",
+        "npu_util_mapper": 65.83323706535006,
+        "npu_util_remap": 65.83323706535006,
+        "npu_util_saved": 65.83323706535006,
+        "npu_cycles": 199097,
+        "pim_proxy_util_mapper": 95.03135762189596,
+        "pim_proxy_util_remap": 95.03135762189596,
+        "identical": true
+      }
+    },
+    "x8_pn9": {
+      "NPU-friendly": {
+        "layout": "bg2 col7 bank2 row4",
+        "npu_util_mapper": 95.22605581104742,
+        "npu_util_remap": 95.22605581104742,
+        "npu_util_saved": 95.22605581104742,
+        "npu_cycles": 137643,
+        "pim_proxy_util_mapper": 51.66376299753254,
+        "pim_proxy_util_remap": 51.66376299753254,
+        "identical": true
+      },
+      "PIM-friendly": {
+        "layout": "col7 bg2 bank2 row4",
+        "npu_util_mapper": 65.83323706535006,
+        "npu_util_remap": 65.83323706535006,
+        "npu_util_saved": 65.83323706535006,
+        "npu_cycles": 199097,
+        "pim_proxy_util_mapper": 27.85127514268594,
+        "pim_proxy_util_remap": 27.85127514268594,
+        "identical": true
+      },
+      "PFM a=0.25": {
+        "layout": "bg1 col6 row2 col1 bank2 bg1 row2",
+        "npu_util_mapper": 90.1464246659193,
+        "npu_util_remap": 90.1464246659193,
+        "npu_util_saved": 90.1464246659193,
+        "npu_cycles": 145399,
+        "pim_proxy_util_mapper": 94.91093410572049,
+        "pim_proxy_util_remap": 94.91093410572049,
+        "identical": true
+      },
+      "PFM a=1.0": {
+        "layout": "col7 row2 bank1 bg2 bank1 row2",
+        "npu_util_mapper": 61.66266001138486,
+        "npu_util_remap": 61.66266001138486,
+        "npu_util_saved": 61.66266001138486,
+        "npu_cycles": 212563,
+        "pim_proxy_util_mapper": 94.98177496612246,
+        "pim_proxy_util_remap": 94.98177496612246,
+        "identical": true
+      },
+      "PFM a=2.0": {
+        "layout": "col7 row2 bank1 bg2 bank1 row2",
+        "npu_util_mapper": 61.66266001138486,
+        "npu_util_remap": 61.66266001138486,
+        "npu_util_saved": 61.66266001138486,
+        "npu_cycles": 212563,
+        "pim_proxy_util_mapper": 94.98177496612246,
+        "pim_proxy_util_remap": 94.98177496612246,
+        "identical": true
+      }
+    },
+    "x16_pn7": {
+      "NPU-friendly": {
+        "layout": "bg1 col7 bank2 row5",
+        "npu_util_mapper": 94.81893021977227,
+        "npu_util_remap": 94.81893021977227,
+        "npu_util_saved": 94.81893021977227,
+        "npu_cycles": 138234,
+        "pim_proxy_util_mapper": 94.82853422080741,
+        "pim_proxy_util_remap": 94.82853422080741,
+        "identical": true
+      },
+      "PIM-friendly": {
+        "layout": "col7 bg1 bank2 row5",
+        "npu_util_mapper": 65.45875866477556,
+        "npu_util_remap": 65.45875866477556,
+        "npu_util_saved": 65.45875866477556,
+        "npu_cycles": 200236,
+        "pim_proxy_util_mapper": 94.85873089393237,
+        "pim_proxy_util_remap": 94.85873089393237,
+        "identical": true
+      },
+      "PFM a=0.25": {
+        "layout": "bg1 col6 bank1 col1 bank1 row5",
+        "npu_util_mapper": 94.79355757895726,
+        "npu_util_remap": 94.79355757895726,
+        "npu_util_saved": 94.79355757895726,
+        "npu_cycles": 138271,
+        "pim_proxy_util_mapper": 94.82647605680675,
+        "pim_proxy_util_remap": 94.82647605680675,
+        "identical": true
+      },
+      "PFM a=1.0": {
+        "layout": "col7 bank2 bg1 row5",
+        "npu_util_mapper": 64.01594146979961,
+        "npu_util_remap": 64.01594146979961,
+        "npu_util_saved": 64.01594146979961,
+        "npu_cycles": 204749,
+        "pim_proxy_util_mapper": 94.84843441323964,
+        "pim_proxy_util_remap": 94.84843441323964,
+        "identical": true
+      },
+      "PFM a=2.0": {
+        "layout": "col7 bg1 bank2 row5",
+        "npu_util_mapper": 65.45875866477556,
+        "npu_util_remap": 65.45875866477556,
+        "npu_util_saved": 65.45875866477556,
+        "npu_cycles": 200236,
+        "pim_proxy_util_mapper": 94.85873089393237,
+        "pim_proxy_util_remap": 94.85873089393237,
+        "identical": true
+      }
+    },
+    "x16_pn9": {
+      "NPU-friendly": {
+        "layout": "bg1 col7 bank2 row5",
+        "npu_util_mapper": 94.81893021977227,
+        "npu_util_remap": 94.81893021977227,
+        "npu_util_saved": 94.81893021977227,
+        "npu_cycles": 138234,
+        "pim_proxy_util_mapper": 53.03059114835149,
+        "pim_proxy_util_remap": 53.03059114835149,
+        "identical": true
+      },
+      "PIM-friendly": {
+        "layout": "col7 bg1 bank2 row5",
+        "npu_util_mapper": 65.45875866477556,
+        "npu_util_remap": 65.45875866477556,
+        "npu_util_saved": 65.45875866477556,
+        "npu_cycles": 200236,
+        "pim_proxy_util_mapper": 36.66103534308186,
+        "pim_proxy_util_remap": 36.66103534308186,
+        "identical": true
+      },
+      "PFM a=0.25": {
+        "layout": "bg1 col6 row2 bank1 col1 bank1 row3",
+        "npu_util_mapper": 90.89786888770224,
+        "npu_util_remap": 90.89786888770224,
+        "npu_util_saved": 90.89786888770224,
+        "npu_cycles": 144197,
+        "pim_proxy_util_mapper": 94.82647605680675,
+        "pim_proxy_util_remap": 94.82647605680675,
+        "identical": true
+      },
+      "PFM a=1.0": {
+        "layout": "col7 row2 bg1 bank2 row3",
+        "npu_util_mapper": 61.93626431784675,
+        "npu_util_remap": 61.93626431784675,
+        "npu_util_saved": 61.93626431784675,
+        "npu_cycles": 211624,
+        "pim_proxy_util_mapper": 94.85873089393237,
+        "pim_proxy_util_remap": 94.85873089393237,
+        "identical": true
+      },
+      "PFM a=2.0": {
+        "layout": "col7 row2 bank2 bg1 row3",
+        "npu_util_mapper": 61.55869285466039,
+        "npu_util_remap": 61.55869285466039,
+        "npu_util_saved": 61.55869285466039,
+        "npu_cycles": 212922,
+        "pim_proxy_util_mapper": 94.84843441323964,
+        "pim_proxy_util_remap": 94.84843441323964,
+        "identical": true
+      }
+    }
+  },
+  "multi_region": {
+    "NPU-friendly everywhere": {
+      "util": 95.05039526676994,
+      "cycles": 1103179,
+      "layouts": [
+        "bg2 col7 bank2 row4"
+      ],
+      "region_layout": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "region_mapped": 262155,
+      "reads": 262144
+    },
+    "PIM-friendly everywhere": {
+      "util": 65.81427096442144,
+      "cycles": 1593235,
+      "layouts": [
+        "col7 bg2 bank2 row4"
+      ],
+      "region_layout": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "region_mapped": 262162,
+      "reads": 262144
+    },
+    "PFM a=0.25 per region": {
+      "util": 93.6969781452113,
+      "cycles": 1119114,
+      "layouts": [
+        "bg1 col6 bank1 col1 bank1 bg1 row4",
+        "bg1 col6 row2 col1 bank2 bg1 row2"
+      ],
+      "region_layout": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "region_mapped": 262157,
+      "reads": 262144
+    },
+    "PFM a=2.0 per region": {
+      "util": 64.70243050006387,
+      "cycles": 1620613,
+      "layouts": [
+        "col7 bg1 bank2 bg1 row4",
+        "col7 row2 bank1 bg2 bank1 row2"
+      ],
+      "region_layout": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "region_mapped": 262162,
+      "reads": 262144
+    }
+  },
+  "all_identical": true
+}
