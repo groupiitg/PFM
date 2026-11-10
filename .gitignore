@@ -26,3 +26,4 @@ v2/make_pdf.py
 *.tex
 *.bib
 *.png
+!docs/*.pdf

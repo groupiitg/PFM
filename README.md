@@ -21,9 +21,17 @@ Main result (DDR4 x8, over the seven weight matrices of a decoder layer, weighte
 | PFM alpha=0.25 | 93.82 | 48.06 |
 | PFM alpha=2 | 64.71 | 96.12 |
 
+## Documents
+
+- [Report (IEEE format)](docs/Report.pdf)
+- [Presentation](docs/Presentation.pdf)
+- [Baseline results](docs/Baseline_Results.pdf)
+- [Contribution results with comparison over the baseline](docs/Contribution_Results.pdf)
+
 ## Layout
 
 ```
+docs/                   report, presentation and results PDFs
 ramulator_patch/        the Ramulator change (PFMRegionMapper) as a patch + the C++ file
 v2/                     experiment code and raw results
   rmlib.py              one-to-one remapper + Ramulator runner (asserts all reads reach DRAM)
