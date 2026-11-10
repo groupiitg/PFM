@@ -64,7 +64,7 @@ def main():
     csv.writer(open(os.path.join(b, "baseline_results.csv"), "w", newline="")).writerows(base_rows)
     open(os.path.join(b, "README.txt"), "w").write(
         "Baseline results: NPU-friendly and PIM-friendly layouts.\n"
-        "baseline_utilization: NPU sequential-read utilization (Ramulator 2.0, DDR4-2400) and PIM GEMV\n"
+        "baseline_utilization: NPU sequential-read utilization (Ramulator 2.1, DDR4-2400) and PIM GEMV\n"
         "utilization (analytical all-bank model) for DDR4 x8/x16 and d_in = 4096 / 14336.\n"
         "bank_group_effect: NPU utilization with column bits vs bank-group bits lowest.\n"
         "baseline_results.csv: the numbers behind the figure.\n")

@@ -23,7 +23,7 @@
 
 \begin{document}
 
-\title{Dual-View Address Mapping for NPU--PIM Memory on Ramulator~2.0}
+\title{Dual-View Address Mapping for NPU--PIM Memory on Ramulator~2}
 
 \author{\IEEEauthorblockN{Yash Gupta}
 \IEEEauthorblockA{Roll No. 264101064\\
@@ -52,7 +52,7 @@ IIT Guwahati\\
 \maketitle
 
 \begin{abstract}
-An NPU and a processing-in-memory (PIM) unit that share one DRAM want different physical layouts of the same weight matrix: the NPU streams the matrix and needs consecutive accesses spread over independent DRAM resources, while all-bank PIM needs the parallel PIM units to sit in different banks over the same input range. PFM~\cite{zhao2026pfm} chooses one jointly optimized layout per 2\,MB page with a mixed-integer linear program (MILP). We reproduce this optimizer for the weight shapes of LLaMA3-8B. A PuLP/CBC MILP assigns the 15 line-index bits of a 2\,MB page to column, bank-group, bank and row bits of a DDR4 device under capacity and structural constraints, maximizing $\mathrm{NPU}(f)+\alpha\,\mathrm{PIM}(f)$. We add a region-aware address mapper to Ramulator~2.0 that gives every 2\,MB region its own layout. We compare NPU-friendly, PIM-friendly and jointly optimized layouts: NPU sequential-read utilization is simulated in Ramulator, and PIM matrix-vector (GEMV) utilization is computed with an analytical all-bank model driven by Ramulator's DDR4-2400 timings. Over all seven weight matrices of a decoder layer, the optimized layout with $\alpha{=}0.25$ keeps 93.8\% NPU utilization (NPU-friendly: 95.2\%) while raising PIM utilization from 18.6\% to 48.1\%; with $\alpha{=}2$ it reaches 96.1\% PIM utilization (PIM-friendly: 71.3\%). For \texttt{down\_proj}, both fixed layouts (designed for $d_{\mathrm{in}}{=}4096$) give 4\% PIM utilization and the optimizer recovers 48--96\%. We also show that on single-channel DDR4 no layout can be best for both devices at once, and explain why.
+An NPU and a processing-in-memory (PIM) unit that share one DRAM want different physical layouts of the same weight matrix: the NPU streams the matrix and needs consecutive accesses spread over independent DRAM resources, while all-bank PIM needs the parallel PIM units to sit in different banks over the same input range. PFM~\cite{zhao2026pfm} chooses one jointly optimized layout per 2\,MB page with a mixed-integer linear program (MILP). We reproduce this optimizer for the weight shapes of LLaMA3-8B. A PuLP/CBC MILP assigns the 15 line-index bits of a 2\,MB page to column, bank-group, bank and row bits of a DDR4 device under capacity and structural constraints, maximizing $\mathrm{NPU}(f)+\alpha\,\mathrm{PIM}(f)$. We add a region-aware address mapper to Ramulator~2 that gives every 2\,MB region its own layout. We compare NPU-friendly, PIM-friendly and jointly optimized layouts: NPU sequential-read utilization is simulated in Ramulator, and PIM matrix-vector (GEMV) utilization is computed with an analytical all-bank model driven by Ramulator's DDR4-2400 timings. Over all seven weight matrices of a decoder layer, the optimized layout with $\alpha{=}0.25$ keeps 93.8\% NPU utilization (NPU-friendly: 95.2\%) while raising PIM utilization from 18.6\% to 48.1\%; with $\alpha{=}2$ it reaches 96.1\% PIM utilization (PIM-friendly: 71.3\%). For \texttt{down\_proj}, both fixed layouts (designed for $d_{\mathrm{in}}{=}4096$) give 4\% PIM utilization and the optimizer recovers 48--96\%. We also show that on single-channel DDR4 no layout can be best for both devices at once, and explain why.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -67,11 +67,11 @@ LLM inference mixes compute-bound phases (prefill, batched GEMM) with memory-bou
 \end{itemize}
 PFM~\cite{zhao2026pfm} solves this with a \emph{dual-view} memory: one physical layout per 2\,MB page, chosen by a MILP that scores how well a layout serves each device.
 
-\textbf{Task.} We implement the PFM address-mapping optimizer for one tensor shape in Python with PuLP~\cite{mitchell2011pulp}, add a mapping choice per memory region to Ramulator~2.0~\cite{luo2024ramulator2}, and compare three layouts for the LLaMA3-8B~\cite{llama3} weight matrices: NPU-friendly, PIM-friendly and jointly optimized. We report bandwidth utilization for sequential NPU reads and for PIM GEMV. GPU kernels, hardware synthesis and larger models are out of scope.
+\textbf{Task.} We implement the PFM address-mapping optimizer for one tensor shape in Python with PuLP~\cite{mitchell2011pulp}, add a mapping choice per memory region to Ramulator~2~\cite{luo2024ramulator2}, and compare three layouts for the LLaMA3-8B~\cite{llama3} weight matrices: NPU-friendly, PIM-friendly and jointly optimized. We report bandwidth utilization for sequential NPU reads and for PIM GEMV. GPU kernels, hardware synthesis and larger models are out of scope.
 
 \textbf{Contributions.}
 (1) A verified MILP that maps 15 address bits to DDR4 levels and matches the best of 20,000--100,000 random layouts in every case.
-(2) \texttt{PFMRegionMapper}, a new Ramulator~2.0 address mapper that holds a table of layouts and selects one per 2\,MB region, checked to give cycle-identical results to an independent Python bit permutation, and a utilization metric checked against Ramulator's own throughput counter.
+(2) \texttt{PFMRegionMapper}, a new Ramulator~2 address mapper that holds a table of layouts and selects one per 2\,MB region, checked to give cycle-identical results to an independent Python bit permutation, and a utilization metric checked against Ramulator's own throughput counter.
 (3) Measurements on all seven LLaMA3-8B weight matrices for DDR4 x8 and x16, an $\alpha$ sweep, and a bound that explains why one layout cannot serve both devices fully on single-channel DDR4.
 
 \section{Background}
@@ -100,7 +100,7 @@ We compute $y=xW$ with FP16 weights stored column by column, so one column of $W
 \node[box] (pim) at (0,-2.9) {PIM GEMV\\order};
 \node[box=colRo] (model) at (2.4,-2.9) {analytical\\all-bank model};
 \node[draw, dashed, rounded corners=3pt, fit=(map)(ctl), inner sep=1.6mm,
-      label={[font=\scriptsize\itshape]below:Ramulator 2.0}] {};
+      label={[font=\scriptsize\itshape]below:Ramulator 2.1}] {};
 \draw[->] (shape) -- (milp);
 \draw[->] (milp) -- (tab);
 \draw[->] (tab.south) -- ++(0,-0.25) -| (map.north);
@@ -121,16 +121,16 @@ Fig.~\ref{fig:flow} shows the flow. The experiments are about 700 lines of Pytho
 \subsection{Per-region mapping and simulator setup}
 A layout is a list of (level, bit count) pairs from the least significant line-index bit upward, e.g.\ \texttt{bg1 col6 bank1 col1 bank1 bg1 row4}. It is a pure bit permutation (no XOR, no dropped bits).
 
-\textbf{\texttt{PFMRegionMapper}.} We added a new address-mapper implementation to Ramulator~2.0 (one C++ file registered with the controller's \texttt{addr\_mapper} interface, plus one line in \texttt{CMakeLists.txt}; the Python wrapper is generated by Ramulator). Its parameters are \texttt{region\_bits} (21 for 2\,MB), a list of \texttt{layouts}, a \texttt{region\_layout} table with one layout id per region, and a \texttt{default\_layout} for regions outside the table ($-1$ = stock RoBaRaCoCh). For each request it takes the line index, splits it into a region number and 15 local bits, sends every local bit to the DRAM level and bit position given by that region's layout, and places the region number above the layout's row bits. At start-up it checks that every layout gives the column, bank-group and bank levels exactly their device bit counts. Weights of the same $d_{\mathrm{in}}$ share one layout.
+\textbf{\texttt{PFMRegionMapper}.} We added a new address-mapper implementation to Ramulator~2 (one C++ file registered with the controller's \texttt{addr\_mapper} interface, plus one line in \texttt{CMakeLists.txt}; the Python wrapper is generated by Ramulator). Its parameters are \texttt{region\_bits} (21 for 2\,MB), a list of \texttt{layouts}, a \texttt{region\_layout} table with one layout id per region, and a \texttt{default\_layout} for regions outside the table ($-1$ = stock RoBaRaCoCh). For each request it takes the line index, splits it into a region number and 15 local bits, sends every local bit to the DRAM level and bit position given by that region's layout, and places the region number above the layout's row bits. At start-up it checks that every layout gives the column, bank-group and bank levels exactly their device bit counts. Weights of the same $d_{\mathrm{in}}$ share one layout.
 
 \textbf{Independent check.} We also implemented the same permutation in Python: it rewrites each address so that Ramulator's stock RoBaRaCoCh mapper decodes the intended fields, and asserts that all $2^{15}$ lines map to distinct addresses. For all 20 layouts and both access patterns, the two paths give identical cycle counts (Section~\ref{sec:region}).
 
-Ramulator~2.0 runs one DDR4-2400R channel (DDR4\_8Gb\_x8 or x16, one rank) with FR-FCFS scheduling, open-row policy and all-bank refresh. For the Python path we located the RoBaRaCoCh field positions (x8: column [12:6], bank group [14:13], bank [16:15], row [32:17]) and verified them by simulation (Fig.~\ref{fig:bg}). Every run also asserts that the trace has no duplicate addresses and that all reads reach DRAM.
+Ramulator~2 runs one DDR4-2400R channel; we use version 2.1 (commit \texttt{c6c7a5d}~\cite{luo2026ramulator21}), the successor of Ramulator~2.0~\cite{luo2024ramulator2} in the same code base. It is configured as DDR4\_8Gb\_x8 or x16 with one rank, FR-FCFS scheduling, open-row policy and all-bank refresh. For the Python path we located the RoBaRaCoCh field positions (x8: column [12:6], bank group [14:13], bank [16:15], row [32:17]) and verified them by simulation (Fig.~\ref{fig:bg}). Every run also asserts that the trace has no duplicate addresses and that all reads reach DRAM.
 
 \textbf{Metric.} NPU utilization $=4\,N_{\mathrm{reads}}/\mathrm{cycles}$, with cycles in DRAM clocks. On 8192 plain sequential reads this gives 65.9\%, identical to Ramulator's reported throughput divided by the 19.2\,GB/s peak (12{,}659.6\,MB/s / 19{,}200\,MB/s).
 
 \subsection{MILP formulation}
-Binary variable $x_{l,j}=1$ if line-index bit $j\in\{0..14\}$ selects level $l\in\{\mathrm{Co},\mathrm{BG},\mathrm{Ba},\mathrm{Ro}\}$. Following PFM:
+Binary variable $x_{l,j}=1$ if line-index bit $j\in\{0..14\}$ selects level $l\in\{\mathrm{Co},\mathrm{BG},\mathrm{Ba},\mathrm{Ro}\}$. Following PFM (whose capacity constraint is $\sum_j x_{l,j}\le B_l$; because the device bit counts add up to exactly 15, every level must be filled and the bound holds with equality):
 \begin{align}
 \textstyle\sum_{l} x_{l,j} &= 1 \quad \forall j &&\text{(structural)}\\
 \textstyle\sum_{j} x_{l,j} &= B_l \quad \forall l &&\text{(capacity)}
@@ -150,7 +150,7 @@ This term is made linear with a one-hot binary $y_{k,r}$ over all feasible $(k,r
 \textbf{Verification.} For every solve we check that (a) the MILP objective equals an exact Python evaluation of the returned layout (catches linearization errors) and (b) it is at least as good as the best of 20,000 random layouts (100,000 in the first model). Both held in all cases. Re-running the solver reproduces every stored layout exactly.
 
 \subsection{PIM GEMV model}
-Stock Ramulator~2.0 has no PIM commands, so PIM utilization comes from an analytical model that uses Ramulator's DDR4-2400R values. Each step issues one all-bank column command: units $u=0..U{-}1$ read offset $t$ of their current column. A unit costs $t_{CCD\_L}=6$ cycles, plus $t_{RCD}=16$ if its bank has no open row or $t_{RP}+t_{RCD}=32$ if the row changes. Units in the same bank add up, and the step lasts as long as the slowest bank. Utilization is the ideal time ($6$ cycles per step) over the modeled time. As a cross-check, we also replay the same access order as ordinary reads through Ramulator (the ``read-stream proxy'').
+Stock Ramulator~2 has no PIM commands, so PIM utilization comes from an analytical model that uses Ramulator's DDR4-2400R values. Each step issues one all-bank column command: units $u=0..U{-}1$ read offset $t$ of their current column. A unit costs $t_{CCD\_L}=6$ cycles, plus $t_{RCD}=16$ if its bank has no open row or $t_{RP}+t_{RCD}=32$ if the row changes. Units in the same bank add up, and the step lasts as long as the slowest bank. Utilization is the ideal time ($6$ cycles per step) over the modeled time. As a cross-check, we also replay the same access order as ordinary reads through Ramulator (the ``read-stream proxy'').
 
 \subsection{Layouts compared}
 \textbf{NPU-friendly}: BG lowest, then Co, Ba, Ro. \textbf{PIM-friendly}: Co lowest, then BG, Ba, Ro. \textbf{PFM}: the MILP solution for $\alpha\in\{0.25,1,2\}$ and each $p_n$. Table~\ref{tab:layouts} and Fig.~\ref{fig:layouts} list them.
@@ -195,7 +195,7 @@ Fig.~\ref{fig:baseline} shows the two fixed layouts. NPU-friendly reaches 95\% N
 Fig.~\ref{fig:contribution} and Table~\ref{tab:results} add the MILP layouts.
 \begin{itemize}
 \item \textbf{$d_{\mathrm{in}}{=}4096$ (six matrices).} PFM $\alpha{=}0.25$ keeps the bank-group bit at position 0 and puts the other three bank-level bits in the unit window: 95.2\% NPU (same as NPU-friendly) with 48.1\% PIM instead of 24.0\%. For $\alpha\ge1$ the solver picks a layout equivalent to PIM-friendly (only the order of bank-level bits inside the window differs), with the same utilization.
-\item \textbf{$d_{\mathrm{in}}{=}14336$ (\texttt{down\_proj}).} PFM moves two row bits to positions 7--8 (the top of the within-column offset) and fills the window with bank-level bits. With $\alpha{=}0.25$ it gets 90.2\% NPU and 48.1\% PIM; with $\alpha\ge1$ 96.1\% PIM at 61.7\% NPU. Both fixed layouts give 3.95\% PIM. The read-stream proxy agrees in direction (51.7\% $\rightarrow$ 94.9\%). Much of this gain comes from adapting the layout to the column length, which a hand-tuned PIM layout for this shape could also do; the optimizer's added value here is that it finds the shape-specific layout automatically and, for $\alpha{=}0.25$, one that also keeps 90\% NPU utilization.
+\item \textbf{$d_{\mathrm{in}}{=}14336$ (\texttt{down\_proj}).} PFM moves two row bits to positions 7--8 (the top of the within-column offset), out of the unit window. With $\alpha{=}0.25$ the window holds three bank-level bits and one column bit (one bank-group bit stays at bit~0 for the NPU), giving 90.2\% NPU and 48.1\% PIM; with $\alpha\ge1$ it holds all four bank-level bits, giving 96.1\% PIM at 61.7\% NPU. Both fixed layouts give 3.95\% PIM. The read-stream proxy agrees in direction (51.7\% $\rightarrow$ 94.9\%). Much of this gain comes from adapting the layout to the column length, which a hand-tuned PIM layout for this shape could also do; the optimizer's added value here is that it finds the shape-specific layout automatically and, for $\alpha{=}0.25$, one that also keeps 90\% NPU utilization.
 \item \textbf{x16} shows the same pattern (Table~\ref{tab:results}).
 \end{itemize}
 
@@ -210,13 +210,13 @@ Fig.~\ref{fig:contribution} and Table~\ref{tab:results} add the MILP layouts.
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\textwidth]{llama_weighted.pdf}
-\caption{Utilization over all seven LLaMA3-8B weight matrices of one decoder layer, weighted by their 2\,MB pages.}
+\caption{Utilization over all seven LLaMA3-8B weight matrices of one decoder layer, weighted by their size in 2\,MB pages of weight data.}
 \label{fig:weighted}
 \end{figure*}
 \input{weighted_table.tex}
 \input{shapes_table.tex}
 
-Weighting each matrix by its pages (Tables~\ref{tab:weighted} and~\ref{tab:shapes}, Fig.~\ref{fig:weighted}): on x8, PFM $\alpha{=}0.25$ gives up 1.4 NPU points against NPU-friendly (93.8\% vs.\ 95.2\%) and gains 29.4 PIM points (48.1\% vs.\ 18.6\%). PFM $\alpha{=}2$ gains 24.8 PIM points over PIM-friendly (96.1\% vs.\ 71.3\%) for 1.1 NPU points.
+Weighting each matrix by its size in 2\,MB pages of weight data (Tables~\ref{tab:weighted} and~\ref{tab:shapes}, Fig.~\ref{fig:weighted}): on x8, PFM $\alpha{=}0.25$ gives up 1.4 NPU points against NPU-friendly (93.8\% vs.\ 95.2\%) and gains 29.4 PIM points (48.1\% vs.\ 18.6\%). PFM $\alpha{=}2$ gains 24.8 PIM points over PIM-friendly (96.1\% vs.\ 71.3\%) for 1.1 NPU points.
 
 \subsection{Effect of $\alpha$ and the single-layout bound}
 For $d_{\mathrm{in}}{=}4096$ the solver switches from the NPU-oriented to the PIM-oriented layout between $\alpha{=}0.25$ and $\alpha{=}1$. In the model the switch is at $\alpha=2/3$, where $1+0.5\alpha = 2/3+\alpha$. A low $\alpha$ suits prefill-heavy serving, a high $\alpha$ decode-heavy serving.
@@ -243,11 +243,12 @@ The NPU score tracks Ramulator closely: 1.00 vs.\ 95.2\%, 0.67 vs.\ 65.8\%, and 
 \item PIM utilization is analytical, not simulated. The optimizer's PIM score and the model share the assumption that unit-window bits must be bank-level bits, so their agreement shows consistency rather than independent validation.
 \item The memory is single-channel DDR4, not multi-channel HBM2e-PIM; bank-group bits stand in for channel bits, and the paper's numbers (its Table~III) are not reproduced.
 \item The fixed baselines are the usual NPU-friendly and PIM-friendly orders for $d_{\mathrm{in}}{=}4096$; for \texttt{down\_proj} they are weak, so the gain there partly reflects shape adaptation rather than joint optimization.
+\item The whole-layer numbers weight \texttt{down\_proj} by its 56 pages of weight data; with each column padded to 512 lines, its layout would occupy 64 pages. Using 64 changes the weighted utilizations by at most 2.5 points and changes no ranking.
 \item Layouts are static per tensor class; there is no runtime scheduler, no address-translation hardware and no validation against real hardware.
 \end{enumerate}
 
 \section{Conclusion}
-We reproduced the PFM address-mapping optimizer as a verified PuLP MILP and evaluated it on the LLaMA3-8B weight shapes with Ramulator~2.0. A new Ramulator address mapper, \texttt{PFMRegionMapper}, gives every 2\,MB region its own layout and reproduces an independent Python implementation cycle for cycle. The jointly optimized layouts improve PIM utilization at nearly the same NPU utilization (18.6\%$\rightarrow$48.1\% at 93.8\% NPU over a decoder layer), and they turn \texttt{down\_proj} from unusable for PIM (4\%) into 48--96\%. On single-channel DDR4 the bit budget forces a trade-off that $\alpha$ selects. Next steps are multiple channels and PIM commands inside Ramulator for a cycle-level PIM timing model. Source code: \url{https://github.com/groupiitg/PFM}.
+We reproduced the PFM address-mapping optimizer as a verified PuLP MILP and evaluated it on the LLaMA3-8B weight shapes with Ramulator~2. A new Ramulator address mapper, \texttt{PFMRegionMapper}, gives every 2\,MB region its own layout and reproduces an independent Python implementation cycle for cycle. The jointly optimized layouts improve PIM utilization at nearly the same NPU utilization (18.6\%$\rightarrow$48.1\% at 93.8\% NPU over a decoder layer), and they turn \texttt{down\_proj} from unusable for PIM (4\%) into 48--96\%. On single-channel DDR4 the bit budget forces a trade-off that $\alpha$ selects. Next steps are multiple channels and PIM commands inside Ramulator for a cycle-level PIM timing model. Source code: \url{https://github.com/groupiitg/PFM}.
 
 \bibliographystyle{IEEEtran}
 \bibliography{refs}

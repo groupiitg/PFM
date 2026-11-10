@@ -1,6 +1,6 @@
 \begin{table}[t]
 \centering
-\caption{Utilization (\%) over all seven LLaMA3-8B weight matrices of a decoder layer, weighted by 2\,MB pages (152 pages with $d_{\mathrm{in}}{=}4096$, 56 with $d_{\mathrm{in}}{=}14336$).}
+\caption{Utilization (\%) over all seven LLaMA3-8B weight matrices of a decoder layer, weighted by their size in 2\,MB pages of weight data (152 pages with $d_{\mathrm{in}}{=}4096$, 56 for \texttt{down\_proj}, whose padded layout would occupy 64).}
 \label{tab:weighted}
 \begin{tabular}{llrr}
 \toprule

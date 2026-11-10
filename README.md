@@ -1,4 +1,4 @@
-# Dual-view address mapping for NPU-PIM memory (PFM) on Ramulator 2.0
+# Dual-view address mapping for NPU-PIM memory (PFM) on Ramulator 2
 
 Course project, Group 13. This is a reproduction of the address-mapping optimizer from:
 
@@ -9,10 +9,10 @@ S. Zhao et al., "Rethinking Unified Memory for NPU-PIM Systems: Dual-View Memory
 An NPU and a PIM unit share one DRAM but want different layouts for the same weight matrix. The project does three things:
 
 - A PuLP MILP assigns the 15 line-index bits of a 2 MB page to column, bank-group, bank and row bits of a DDR4 device. It maximizes NPU(f) + alpha * PIM(f).
-- A new Ramulator 2.0 address mapper, `PFMRegionMapper`, gives every 2 MB memory region its own layout (a table of layouts plus a region-to-layout table). Its results are checked cycle for cycle against an independent Python bit permutation.
+- A new Ramulator address mapper, `PFMRegionMapper` (Ramulator 2.1, the current release of Ramulator 2), gives every 2 MB memory region its own layout (a table of layouts plus a region-to-layout table). Its results are checked cycle for cycle against an independent Python bit permutation.
 - Three kinds of layout are compared on the LLaMA3-8B weight shapes: NPU-friendly, PIM-friendly and jointly optimized (PFM, alpha = 0.25 / 1 / 2). NPU sequential-read utilization is simulated in Ramulator. PIM GEMV utilization is computed with an analytical all-bank model that uses Ramulator's DDR4-2400R timings.
 
-Main result (DDR4 x8, page-weighted over the seven weight matrices of a decoder layer):
+Main result (DDR4 x8, over the seven weight matrices of a decoder layer, weighted by their size in 2 MB pages of weight data):
 
 | Layout | NPU % (Ramulator) | PIM % (analytical) |
 |---|---|---|
@@ -24,7 +24,7 @@ Main result (DDR4 x8, page-weighted over the seven weight matrices of a decoder 
 ## Layout
 
 ```
-ramulator_patch/        the Ramulator 2.0 change (PFMRegionMapper) as a patch + the C++ file
+ramulator_patch/        the Ramulator change (PFMRegionMapper) as a patch + the C++ file
 v2/                     experiment code and raw results
   rmlib.py              one-to-one remapper + Ramulator runner (asserts all reads reach DRAM)
   probe.py, probe2.py,  checks of the metric and of the DDR4 field positions
@@ -58,7 +58,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**2. Build Ramulator 2.0 (commit c6c7a5d) with the PFM mapper** (the first build downloads its dependencies and takes a few minutes):
+**2. Build Ramulator (version 2.1, commit c6c7a5d) with the PFM mapper** (the first build downloads its dependencies and takes a few minutes):
 
 ```bash
 git clone https://github.com/CMU-SAFARI/ramulator2.git
@@ -101,5 +101,6 @@ The results in `v2/results/` are already in the repository, so step 4 can be run
 - PIM utilization is analytical, not cycle-simulated.
 - The memory is single-channel DDR4, not HBM2e-PIM.
 - The fixed baselines are designed for d_in = 4096, so they are weak on down_proj.
+- down_proj is weighted by its 56 pages of weight data; its padded layout would occupy 64 pages (at most 2.5 points difference in the weighted results).
 
-The report discusses all three.
+The report discusses all of these.

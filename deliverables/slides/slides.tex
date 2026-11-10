@@ -21,7 +21,7 @@
 \makeatother
 
 \title{Dual-View Address Mapping for NPU--PIM Memory}
-\subtitle{Reproducing the PFM address-mapping optimizer on Ramulator 2.0}
+\subtitle{Reproducing the PFM address-mapping optimizer on Ramulator 2}
 \author{Group 13\\[2mm]
 {\footnotesize\begin{tabular}{lll}
 Yash Gupta & 264101064 & \texttt{yash.g@iitg.ac.in} \\
@@ -67,7 +67,7 @@ PFM: pick one layout per 2\,MB page that is good for both, with an integer progr
 \begin{frame}{Assignment scope}
 \begin{itemize}
 \item Implement the address-mapping optimizer (Python + PuLP)
-\item In Ramulator 2.0, add a mapping choice per memory region
+\item In Ramulator 2.0, add a mapping choice per memory region\\{\footnotesize (we use Ramulator 2.1, the current release)}
 \item Compare three layouts: \textbf{NPU-friendly}, \textbf{PIM-friendly}, \textbf{jointly optimized}
 \item Report bandwidth utilization for NPU sequential reads and PIM matrix-vector access
 \item Use the LLaMA3-8B weight shapes
@@ -82,7 +82,7 @@ Matrix ($d_{in}\times d_{out}$) & Shape & 2\,MB pages \\
 q\_proj, o\_proj & 4096$\times$4096 & 16 each \\
 k\_proj, v\_proj & 4096$\times$1024 & 4 each \\
 gate\_proj, up\_proj & 4096$\times$14336 & 56 each \\
-down\_proj & 14336$\times$4096 & 56 \\
+down\_proj & 14336$\times$4096 & 56 (64 if padded) \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -133,7 +133,7 @@ PIM is fast only if every bit in the unit window is a bank or bank-group bit
 \node[box] (pim) at (0,-3.8) {PIM GEMV\\order};
 \node[box=colRo] (model) at (3.6,-3.8) {analytical\\all-bank model};
 \node[draw, dashed, rounded corners=3pt, fit=(map)(ctl), inner sep=2mm,
-      label={[font=\small\itshape]below:Ramulator 2.0}] {};
+      label={[font=\small\itshape]below:Ramulator 2.1}] {};
 \draw[->] (shape) -- (milp); \draw[->] (milp) -- (tab);
 \draw[->] (tab.south) -- ++(0,-0.35) -| (map.north);
 \draw[->] (npu) -- (map); \draw[->] (map) -- (ctl); \draw[->] (pim) -- (model);
@@ -148,7 +148,7 @@ PIM is fast only if every bit in the unit window is a bank or bank-group bit
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{New in Ramulator 2.0: a mapping choice per memory region}
+\begin{frame}[fragile]{New in Ramulator: a mapping choice per memory region}
 \begin{columns}[T]
 \column{0.5\textwidth}
 \small
@@ -211,7 +211,7 @@ MILP value = exact score of its own answer; it ties or beats 20,000--100,000 ran
 \end{frame}
 
 \begin{frame}{PIM model}
-Stock Ramulator 2.0 has no PIM commands, so PIM utilization is computed from Ramulator's DDR4-2400 timings:
+Stock Ramulator has no PIM commands, so PIM utilization is computed from Ramulator's DDR4-2400 timings:
 \begin{itemize}
 \item one step = all 16 units read offset $t$ of their current column
 \item cost per unit: 6 cycles, $+16$ if the bank is closed, $+32$ if the row changes

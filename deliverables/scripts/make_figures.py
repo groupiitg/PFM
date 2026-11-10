@@ -109,7 +109,7 @@ for a, org in zip(ax, ("x8", "x16")):
     a.set_xticks(list(xs))
     a.set_xticklabels([LABEL[l].replace(" ", "\n", 1).replace("-", "-\n", 1) for l in LAY])
     a.set_ylim(0, 108)
-    a.set_title(f"DDR4 {org}, page-weighted over 7 matrices")
+    a.set_title(f"DDR4 {org}, weighted over 7 matrices")
     a.grid(axis="x", visible=False)
 ax[0].set_ylabel("Utilization (%)")
 ax[0].legend(loc="upper center", ncol=2, frameon=False, bbox_to_anchor=(1.05, 1.25))
@@ -169,7 +169,7 @@ for key, cap in CASES:
 rows = rows[:-1]
 write("results_table.tex", r"""\begin{table}[t]
 \centering
-\caption{Bandwidth utilization (\%) of every layout. NPU: Ramulator 2.0. PIM: analytical all-bank model; the read-stream proxy is shown for reference.}
+\caption{Bandwidth utilization (\%) of every layout. NPU: Ramulator. PIM: analytical all-bank model; the read-stream proxy is shown for reference.}
 \label{tab:results}
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{llrrr}
@@ -191,7 +191,7 @@ for org in ("x8", "x16"):
 rows = rows[:-1]
 write("weighted_table.tex", r"""\begin{table}[t]
 \centering
-\caption{Utilization (\%) over all seven LLaMA3-8B weight matrices of a decoder layer, weighted by 2\,MB pages (152 pages with $d_{\mathrm{in}}{=}4096$, 56 with $d_{\mathrm{in}}{=}14336$).}
+\caption{Utilization (\%) over all seven LLaMA3-8B weight matrices of a decoder layer, weighted by their size in 2\,MB pages of weight data (152 pages with $d_{\mathrm{in}}{=}4096$, 56 for \texttt{down\_proj}, whose padded layout would occupy 64).}
 \label{tab:weighted}
 \begin{tabular}{llrr}
 \toprule
@@ -236,7 +236,7 @@ for t in SH:
     rows.append(f"\\texttt{{{t.replace('_', chr(92) + '_')}}} & {SH[t]} & {pages} & " + " & ".join(cells) + r" \\")
 write("shapes_table.tex", r"""\begin{table*}[t]
 \centering
-\caption{Per-matrix utilization on DDR4 x8, shown as NPU\,\% / PIM\,\%. Shapes are $d_{\mathrm{in}}\times d_{\mathrm{out}}$ of $y = xW$ in FP16.}
+\caption{Per-matrix utilization on DDR4 x8, shown as NPU\,\% / PIM\,\%. Shapes are $d_{\mathrm{in}}\times d_{\mathrm{out}}$ of $y = xW$ in FP16. Pages = size of the weight data in 2\,MB pages.}
 \label{tab:shapes}
 \begin{tabular}{llrcccc}
 \toprule
