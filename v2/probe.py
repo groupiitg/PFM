@@ -3,6 +3,7 @@ sys.path.insert(0, os.environ.get("RAMULATOR_PY", os.path.expanduser("~/pfm_assi
 import ramulator
 
 N = 8192
+os.makedirs("traces", exist_ok=True)
 with open("traces/probe_seq.trace", "w") as f:
     for i in range(N):
         f.write(f"0 {i*64}\n")          # raw sequential 64 B reads, no remap

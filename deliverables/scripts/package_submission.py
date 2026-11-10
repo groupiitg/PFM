@@ -40,10 +40,18 @@ def main():
     src_ext = (".tex", ".bib", ".pdf", ".cls")
     no_build = lambda rel: rel.endswith(src_ext) and not (rel.endswith("main.pdf") or rel.endswith("slides.pdf"))
 
-    shutil.copy(os.path.join(ROOT, "report", "main.pdf"), os.path.join(OUT, "1_Report.pdf"))
-    zip_dir(os.path.join(ROOT, "report"), os.path.join(OUT, "2_LaTeX_Source.zip"), no_build)
-    shutil.copy(os.path.join(ROOT, "slides", "slides.pdf"), os.path.join(OUT, "3_Presentation.pdf"))
-    zip_dir(os.path.join(ROOT, "slides"), os.path.join(OUT, "3_Presentation_source.zip"), no_build)
+    # The report and slides are built from LaTeX sources kept outside this repository (Overleaf);
+    # include them only when they are present locally.
+    for src, dst in ((("report", "main.pdf"), "1_Report.pdf"), (("slides", "slides.pdf"), "3_Presentation.pdf")):
+        f = os.path.join(ROOT, *src)
+        if os.path.exists(f):
+            shutil.copy(f, os.path.join(OUT, dst))
+        else:
+            print(f"note: {os.path.join(*src)} not found (built from the LaTeX sources), skipped")
+    for d, dst in (("report", "2_LaTeX_Source.zip"), ("slides", "3_Presentation_source.zip")):
+        main = os.path.join(ROOT, d, "main.tex" if d == "report" else "slides.tex")
+        if os.path.exists(main):
+            zip_dir(os.path.join(ROOT, d), os.path.join(OUT, dst), no_build)
 
     final = json.load(open(os.path.join(RES, "final.json")))
     rows = [["case", "layout", "order_lsb_to_msb", "npu_util_ramulator", "pim_util_analytical", "pim_util_proxy"]]
