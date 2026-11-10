@@ -62,6 +62,9 @@ def main():
           (os.path.join(FIG, "bg_effect.pdf"), "bank_group_effect.pdf"),
           (os.path.join(FIG, "bg_effect.png"), "bank_group_effect.png")], b)
     csv.writer(open(os.path.join(b, "baseline_results.csv"), "w", newline="")).writerows(base_rows)
+    rp = os.path.join(ROOT, "results_pdfs")
+    if os.path.exists(os.path.join(rp, "Baseline_Results.pdf")):
+        shutil.copy(os.path.join(rp, "Baseline_Results.pdf"), b)
     open(os.path.join(b, "README.txt"), "w").write(
         "Baseline results: NPU-friendly and PIM-friendly layouts.\n"
         "baseline_utilization: NPU sequential-read utilization (Ramulator 2.1, DDR4-2400) and PIM GEMV\n"
@@ -80,6 +83,8 @@ def main():
             (os.path.join(RES, "shape_table.csv"), "per_matrix_results.csv"),
             (os.path.join(RES, "opt3.json"), "optimized_mappings.json")], c)
     csv.writer(open(os.path.join(c, "all_layouts_results.csv"), "w", newline="")).writerows(rows)
+    if os.path.exists(os.path.join(rp, "Contribution_Results.pdf")):
+        shutil.copy(os.path.join(rp, "Contribution_Results.pdf"), c)
     open(os.path.join(c, "README.txt"), "w").write(
         "Contribution results: layouts chosen by the PuLP MILP (PFM alpha = 0.25 / 1 / 2) against the baselines.\n"
         "joint_vs_baselines_utilization: all layouts, NPU (Ramulator) and PIM (analytical).\n"

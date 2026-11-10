@@ -38,15 +38,18 @@ v2/                     experiment code and raw results
   run_region_mapper.py  all layouts through PFMRegionMapper + multi-region run -> results/region_mapper.json
   results/              JSON/CSV results
 deliverables/
-  scripts/make_figures.py        figures (PDF/PNG) and LaTeX tables from v2/results
-  scripts/package_submission.py  builds deliverables/submission/
-  report/               IEEE conference report (LaTeX)
-  slides/               presentation (Beamer)
+  figures/                       result figures (PDF)
+  report/figures/, slides/figures/  copies of the figures used by the report and slides
+  scripts/make_figures.py        figures and tables from v2/results
+  scripts/make_results_pdfs.py   Baseline_Results.pdf and Contribution_Results.pdf
+  scripts/package_submission.py  collects the submission files
 ```
+
+The LaTeX sources of the report and slides are kept on Overleaf and in the submitted LaTeX archive, not in this repository.
 
 ## Reproduce
 
-Requirements: Linux (tested on Ubuntu under WSL2), Python 3.10+, g++ 12+ (C++20), CMake 3.14+, git, and TeX Live (`latexmk`, IEEEtran, beamer) for the report and slides.
+Requirements: Linux (tested on Ubuntu under WSL2), Python 3.10+, g++ 12+ (C++20), CMake 3.14+, git, and TeX Live (`latexmk`) for the results PDFs.
 
 All commands below are run from the top folder of this repository, in one terminal.
 
@@ -81,16 +84,12 @@ python3 run_region_mapper.py       # PFMRegionMapper checks -> results/region_ma
 cd ..
 ```
 
-**4. Figures, report, slides and submission folder:**
+**4. Figures and results documents:**
 
 ```bash
 cd deliverables
-python3 scripts/make_figures.py
-cp figures/*.pdf figures/layouts_tikz.tex report/figures/ && cp tables/*.tex report/tables/
-cp figures/*.pdf figures/layouts_tikz.tex slides/figures/
-(cd report && latexmk -pdf main.tex)
-(cd slides && latexmk -pdf slides.tex)
-python3 scripts/package_submission.py --repo-url https://github.com/groupiitg/PFM
+python3 scripts/make_figures.py        # figures in deliverables/figures/
+python3 scripts/make_results_pdfs.py   # results_pdfs/Baseline_Results.pdf, Contribution_Results.pdf (needs LaTeX)
 cd ..
 ```
 

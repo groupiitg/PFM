@@ -22,3 +22,7 @@ ramulator2/
 .venv/
 v2/make_pdf.py
 *.vrb
+# LaTeX sources live on Overleaf; images are kept as PDF only
+*.tex
+*.bib
+*.png
