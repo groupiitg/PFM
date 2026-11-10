@@ -1,4 +1,4 @@
-"""Run the layouts through the PFMRegionMapper added to Ramulator 2.0.
+"""Run the layouts through the PFMRegionMapper added to Ramulator.
 
 Part 1 (equivalence): for every layout in results/final.json, replay the plain
 (un-remapped) NPU and PIM traces with PFMRegionMapper doing the mapping inside
